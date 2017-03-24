@@ -3,6 +3,30 @@ import { $, docElement, isTouch, query, transitionend } from '../util/index';
 
 var scroll;
 
+
+//if (window.CSS && window.CSS.supports && !window.CSS.supports('touch-action', 'pan-y')) {
+
+    var xpos;
+
+    document.documentElement.addEventListener('touchstart', e => {
+        //if (!document.documentElement.classList.contains('uk-offcanvas-page')) {
+            xpos = e.touches[0].clientX;
+        //}
+    });
+
+    document.documentElement.addEventListener('touchmove', e => {
+
+        var diff = Math.abs(xpos - e.touches[0].clientX);
+
+        console.log(diff)
+
+        if (diff > 10) {
+            e.preventDefault();
+        }
+    });
+//}
+
+
 export default function (UIkit) {
 
     UIkit.component('offcanvas', {
