@@ -4,6 +4,29 @@
 
 ### Added
 
+- Add trip advisor and yelp icons
+- Add computed properties
+- Add offcanvas close button
+
+### Changed
+
+- Component Constructor initializes multiple components at once
+
+### Fixed
+
+- Fix Scrollspy in view check
+- Fix closing Accordion without animation
+
+## 3.0.0 beta 18 (March 10, 2017)
+
+### Fixed
+
+- Fix regression with positioning
+
+## 3.0.0 beta 17 (March 10, 2017)
+
+### Added
+
 - Add tile component
 - Add grid item match modifier to grid component
 - Tooltip is now attribute reactive
@@ -16,12 +39,13 @@
 ### Fixed
 
 - Fix deferred UIKit loading
-- Fix Dropdowns not closing immediate upon hovering other navbar item in Navbar component
+- Fix Dropdowns not closing immediately upon hovering other navbar item in Navbar component
 - Fix navbar groups center left/right in IE 11
 - Fix "sticky on up" behaviour in Sticky component
 - Fix Offcanvas closing without animation
 - Fix links in Notification message clickable
 - Fix overriding default icons
+- Fix Scrollspy nav when scrolling beyond last item
 
 ## 3.0.0 beta 16 (March 01, 2017)
 

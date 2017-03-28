@@ -11,7 +11,6 @@ var json = require('rollup-plugin-json');
 var buble = require('rollup-plugin-buble');
 var replace = require('rollup-plugin-replace');
 var alias = require('rollup-plugin-import-alias');
-var resolve = require('rollup-plugin-node-resolve');
 var version = require('../package.json').version;
 var banner = `/*! UIkit ${version} | http://www.getuikit.com | (c) 2014 - 2017 YOOtheme | MIT License */\n`;
 
@@ -83,6 +82,9 @@ exports.renderLess = function (data, options) {
 };
 
 exports.compile = function (file, dest, external, globals, name, aliases, bundled) {
+
+    name = (name || '').replace(/[^\w]/g, '_');
+
     return rollup.rollup({
         external,
         entry: `${path.resolve(path.dirname(file), path.basename(file, '.js'))}.js`,
@@ -109,8 +111,8 @@ exports.compile = function (file, dest, external, globals, name, aliases, bundle
             globals,
             format: 'umd',
             banner: exports.banner,
-            moduleId: `UIkit${name || ''}`.toLowerCase(),
-            moduleName: `UIkit${name ? exports.ucfirst(name) : ''}`,
+            moduleId: `UIkit${name}`.toLowerCase(),
+            moduleName: `UIkit${exports.ucfirst(name)}`,
         }).code))
         .then(exports.uglify)
         .catch(console.log);

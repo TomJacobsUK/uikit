@@ -28,16 +28,20 @@ export default function (UIkit) {
         },
 
         init() {
-            this.$emit();
+            this.$emitSync();
+        },
+
+        computed: {
+
+            elements() {
+                return this.target && $(this.target, this.$el) || this.$el;
+            }
+
         },
 
         update: [
 
             {
-
-                read() {
-                    this.elements = this.target && $(this.target, this.$el) || this.$el;
-                },
 
                 write() {
                     if (this.hidden) {
@@ -53,7 +57,8 @@ export default function (UIkit) {
                     this.elements.each((_, el) => {
 
                         if (!el._scrollspy) {
-                            el._scrollspy = {toggles: ($(el).attr('uk-scrollspy-class') || '').split(',') || this.cls};
+                            var cls = $(el).attr('uk-scrollspy-class');
+                            el._scrollspy = {toggles: cls && cls.split(',') || this.cls};
                         }
 
                         el._scrollspy.show = isInView(el, this.offsetTop, this.offsetLeft);
@@ -114,7 +119,7 @@ export default function (UIkit) {
 
                 },
 
-                events: ['scroll', 'load', 'resize', 'orientationchange']
+                events: ['scroll', 'load', 'resize']
 
             }
 
